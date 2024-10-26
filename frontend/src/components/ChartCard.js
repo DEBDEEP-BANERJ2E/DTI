@@ -20,7 +20,8 @@ const ChartCard = () => {
         "Yale University",
         "University of Pennsylvania",
         "Princeton University",
-        "University of California, Berkeley"
+        "University of California, Berkeley",
+        "Heritage Institute of Technology"
     ];
 
     const courseOptions = [
