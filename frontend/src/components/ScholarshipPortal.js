@@ -93,14 +93,14 @@ const ScholarshipPortal = () => {
                         <span className="text-3xl font-bold px-1">UniScholar</span>
                     </div>
                     <nav className="flex space-x-4">
-                        <a href="#" className="text-blue-700 font-bold hover:bg-blue-100 transition duration-200 rounded px-5 py-3">Scholarships</a>
-                        <a href="#" className="text-blue-700 font-bold hover:bg-blue-100 transition duration-200 rounded px-5 py-3">Student Services</a>
-                        <a href="#" className="text-blue-700 font-bold hover:bg-blue-100 transition duration-200 rounded px-5 py-3">Results</a>
-                        <a href="#" className="text-blue-700 font-bold hover:bg-blue-100 transition duration-200 rounded px-5 py-3">Become A Partner</a>
-                        <a href="#" className="text-blue-700 font-bold hover:bg-blue-100 transition duration-200 rounded px-5 py-3">Education Loan Support</a>
+                        <a href="/login" className="text-blue-700 font-bold hover:bg-blue-100 transition duration-200 rounded px-5 py-3">Scholarships</a>
+                        <a href="/login" className="text-blue-700 font-bold hover:bg-blue-100 transition duration-200 rounded px-5 py-3">Student Services</a>
+                        <a href="/login" className="text-blue-700 font-bold hover:bg-blue-100 transition duration-200 rounded px-5 py-3">Results</a>
+                        <a href="/login" className="text-blue-700 font-bold hover:bg-blue-100 transition duration-200 rounded px-5 py-3">Become A Partner</a>
+                        <a href="/login" className="text-blue-700 font-bold hover:bg-blue-100 transition duration-200 rounded px-5 py-3">Education Loan Support</a>
                     </nav>
                     <div className="flex space-x-4">
-                        <a href="#" className="text-blue-900 font-bold hover:bg-blue-100 transition duration-200 rounded px-5 py-3"><i className="fas fa-th"></i> Explore</a>
+                        <a href="/login" className="text-blue-900 font-bold hover:bg-blue-100 transition duration-200 rounded px-5 py-3"><i className="fas fa-th"></i> Explore</a>
                     </div>
                 </div>
             </header>

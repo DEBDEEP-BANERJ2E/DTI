@@ -1,27 +1,27 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import pic2 from '../pics/pic2.jpeg'
+import pic3 from '../pics/pic3.jpeg'
 
 
 const ImageCard = () => {
     const cardData = [
         {
-            title: "Your Admission Journey Begins!",
+            title: "Mark Your Calendar!",
             content: [
-                "Gather Documents",
-                "Prepare for Tests",
-                "Submit Applications"
+                "Application Deadline: March 1",
+                "Interview Dates: April 15-30",
+                "Decision Release: May 15"
             ],
-            imgSrc: "https://images.pexels.com/photos/3184295/pexels-photo-3184295.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=200&w=300",
+            imgSrc: "https://images.pexels.com/photos/3184401/pexels-photo-3184401.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=200&w=300",
         },
         {
-            title: "Why Choose Us?",
+            title: "Funding Your Future!",
             content: [
-                "Top-ranked Faculty",
-                "Diverse Courses",
-                "Active Campus Life"
+                "Merit-based Scholarships",
+                "Need-based Financial Aid",
+                "Athletic Scholarships"
             ],
-            imgSrc: pic2,
+            imgSrc: pic3,
         },
     ];
     

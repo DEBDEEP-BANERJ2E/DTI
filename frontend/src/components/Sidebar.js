@@ -1,76 +1,82 @@
-import React from 'react';
+import React, { useState } from 'react';
 import '@fortawesome/fontawesome-free/css/all.min.css';
 import styles from '../styles/Sidebar.module.css'; // Import the CSS module
-
+import { Link } from 'react-router-dom';
 
 const Sidebar = () => {
+    const [isSidebarOpen, setIsSidebarOpen] = useState(false); // State to track sidebar visibility
+
+    const toggleSidebar = () => {
+        setIsSidebarOpen(!isSidebarOpen); // Toggle sidebar visibility
+    };
+
     return (
-        <div className={styles.sidebarContainer}>
-            {/* Main Sidebar Content */}
-            <div>
-                {/* Dashboard Header */}
-                <div className={styles.sidebarHeader}>
-                    <i className={`fas fa-robot ${styles.icon}`}></i>
-                    <span className={styles.headerText}>Dashboard</span>
+        <div>
+            {/* Hamburger icon to toggle the sidebar */}
+            <button className={styles.hamburgerButton} onClick={toggleSidebar}>
+                <i className="fas fa-bars"></i> {/* Three horizontal line icon */}
+            </button>
+
+            {/* Sidebar Container - shown only when isSidebarOpen is true */}
+            {isSidebarOpen && (
+                <div className={styles.sidebarContainer}>
+                    <nav>
+                        <ul className={styles.menuList}>
+                        <h2 className={styles.sectionHeader}>Dashboard</h2>
+                        <li className={styles.menuItem}>
+                        <Link to="/search-results" className={styles.menuLink}>
+                            <i className={`fas fa-university ${styles.menuIcon}`}></i>
+                            Search Universities
+                        </Link>
+                        </li>
+                        <li className={styles.menuItem}>
+                            <Link to="/upload" className={styles.menuLink}>
+                                <i className={`fas fa-file-upload ${styles.menuIcon}`}></i>
+                                Upload Documents
+                            </Link>
+                        </li>
+                        <li className={styles.menuItem}>
+                            <Link to="/login" className={styles.menuLink}>
+                                <i className={`fas fa-cog ${styles.menuIcon}`}></i>
+                                Settings
+                            </Link>
+                        </li>
+                            <li className={styles.menuItem}>
+                                <Link to="/login" className={styles.menuLink}>
+                                    <i className={`fas fa-file-invoice-dollar ${styles.menuIcon}`}></i>
+                                    Billing
+                                </Link>
+                            </li>
+                            <li className={styles.menuItem}>
+                                <Link to="/login" className={styles.menuLink}>
+                                <i className={`fas fa-headset ${styles.menuIcon}`}></i>
+                                    Helpdesk
+                                </Link>
+                            </li>
+
+                            <h2 className={styles.sectionHeader}>Account Pages</h2>
+                            <li className={styles.menuItem}>
+                                <Link to="/university-profile" className={styles.menuLink}>
+                                    <i className={`fas fa-user ${styles.menuIcon}`}></i>
+                                    Profile
+                                </Link>
+                            </li>
+                            <li className={styles.menuItem}>
+                                <Link to="/login_css" className={styles.menuLink}>
+                                    <i className={`fas fa-user-plus ${styles.menuIcon}`}></i>
+                                    Sign Up Now
+                                </Link>
+                            </li>
+                        </ul>
+                    </nav>
+
+                    <div className={styles.helpSection}>
+                        <p className={styles.helpText}>Need help?</p>
+                        <button className={styles.helpButton}>Documentation</button>
+                        <button className={styles.upgradeButton}>Upgrade to Pro</button>
+                    </div>
                 </div>
-
-                {/* Main Navigation */}
-                <nav>
-                    <ul className={styles.menuList}>
-                        <li className={styles.menuItem}>
-                            <a href="/student-dashboard" className={styles.menuLink}>
-                                <i className={`fas fa-tachometer-alt ${styles.menuIcon}`}></i>
-                                Dashboard
-                            </a>
-                        </li>
-                        <li className={styles.menuItem}>
-                            <a href="/tables" className={styles.menuLink}>
-                                <i className={`fas fa-table ${styles.menuIcon}`}></i>
-                                Tables
-                            </a>
-                        </li>
-                        <li className={styles.menuItem}>
-                            <a href="/billing" className={styles.menuLink}>
-                                <i className={`fas fa-file-invoice-dollar ${styles.menuIcon}`}></i>
-                                Billing
-                            </a>
-                        </li>
-                        <li className={styles.menuItem}>
-                            <a href="/virtual-reality" className={styles.menuLink}>
-                                <i className={`fas fa-vr-cardboard ${styles.menuIcon}`}></i>
-                                Virtual Reality
-                            </a>
-                        </li>
-                        {/*<li className={styles.menuItem}>
-                            <a href="/rtl" className={styles.menuLink}>
-                                <i className={`fas fa-sync-alt ${styles.menuIcon}`}></i>
-                                RTL
-                            </a>
-                        </li>*/}
-                        <h3 className={styles.sectionHeader}>Account Pages</h3>
-                        <li className={styles.menuItem}>
-                            <a href="/university-profile" className={styles.menuLink}>
-                                <i className={`fas fa-user ${styles.menuIcon}`}></i>
-                                Profile
-                            </a>
-                        </li>
-                        <li className={styles.menuItem}>
-                            <a href="/login" className={styles.menuLink}>
-                                <i className={`fas fa-user-plus ${styles.menuIcon}`}></i>
-                                Sign Up Now
-                            </a>
-                        </li>
-                    </ul>
-                </nav>
-            </div>
-            <br></br>
-
-            {/* Need Help Section at the bottom */}
-            <div className={styles.helpSection}>
-                <p className={styles.helpText}>Need help?</p>
-                <button className={styles.helpButton}>Documentation</button>
-                <button className={styles.upgradeButton}>Upgrade to Pro</button>
-            </div>
+            )}
         </div>
     );
 };

@@ -4,7 +4,7 @@ import os
 import json
 from langchain_core.prompts import ChatPromptTemplate
 from langchain_core.output_parsers import StrOutputParser
-from langchain_community.llms import Ollama
+from langchain_ollama import OllamaLLM
 from dotenv import load_dotenv
 
 # Load environment variables
@@ -30,7 +30,7 @@ prompt = ChatPromptTemplate.from_messages(
 )
 
 # Initialize LLM
-llm = Ollama(model="llama3:8b")
+llm = OllamaLLM(model="llama3:8b")
 output_parser = StrOutputParser()
 chain = prompt | llm | output_parser
 

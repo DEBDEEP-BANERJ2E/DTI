@@ -40,11 +40,17 @@ import UnivProfTest from './components/UnivProfTest';
 import './styles/tailwind.css'; // Import Tailwind CSS
 import "slick-carousel/slick/slick.css"; 
 import "slick-carousel/slick/slick-theme.css";
+import ImageCard2 from './components/ImageCard2';
+import ImageCard3 from './components/ImageCard3';
+import Login_css from './components/Login_css';
+
+import { UniversityProvider } from './context/UniversityProvider';
 
 import { UserProvider } from './context/UserContext';
 
 function App() {
     return (
+        <UniversityProvider>
         <UserProvider> {/* Wrap with UserProvider */}
             <Router>
                 <div>
@@ -87,11 +93,15 @@ function App() {
                         <Route path="/payment" element={<PaymentForm />} />
                         <Route path="/univproftest/:id" element={<UnivProfTest />} />
                         <Route path="*" element={<h1>404 Not Found</h1>} />
+                        <Route path="/image-card2" element={<ImageCard2 />} />
+                        <Route path="/image-card3" element={<ImageCard3 />} />
+                        <Route path="/login_css" element={<Login_css />} />
                     </Routes>
                     </div>
                 </div>
             </Router>
         </UserProvider>
+        </UniversityProvider>
     );
 }
 

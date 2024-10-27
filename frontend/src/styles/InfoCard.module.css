@@ -1,0 +1,5 @@
+/* Add this to your CSS file */
+.highlight {
+    background-color: rgb(254, 161, 54) !important; /* Use any color you prefer */
+    color: black; /* Ensure text is readable */
+}

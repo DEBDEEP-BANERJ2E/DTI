@@ -14,7 +14,6 @@ const SearchResults = () => {
     const [searchRanking, setSearchRanking] = useState('');
     const [viewMode, setViewMode] = useState('list'); // 'list' or 'grid' mode
     const [filterUniversities, setFilterUniversities] = useState(universityData);
-    const [selectedCountry, setSelectedCountry] = useState('');
 
     const countries = [
         "Afghanistan", "Albania", "Algeria", "Andorra", "Angola", "Antigua and Barbuda", "Argentina", "Armenia", 
@@ -65,7 +64,7 @@ const SearchResults = () => {
     
 
     const handleCountrySelect = (country) => {
-        setSelectedCountry(country);
+        //setSelectedCountry(country);
         const filtered = universityData.filter(university => university.location === country);
         setFilterUniversities(filtered); // Update the state with the filtered universities
     };
