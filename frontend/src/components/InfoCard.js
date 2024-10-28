@@ -1,35 +1,95 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Calendar from 'react-calendar';
 import 'react-calendar/dist/Calendar.css'; // Import calendar styling
 import '../styles/InfoCard.module.css'; // Import custom styling
 import { useUniversity } from '../context/UniversityProvider';
+import { useCompare } from '../context/CompareContext';
 
 const CollegeComparator = () => {
-    const colleges = [
-        { name: 'College A', rank: 1, location: 'Location A', acceptanceRate: '20%' },
-        { name: 'College B', rank: 2, location: 'Location B', acceptanceRate: '30%' },
-        { name: 'College C', rank: 3, location: 'Location C', acceptanceRate: '25%' },
-    ];
+    const { colleges, addCollege, removeCollege } = useCompare();
+    const [availableColleges, setAvailableColleges] = useState([]);
+    const [selectedCollege, setSelectedCollege] = useState('');
+
+    useEffect(() => {
+        // Fetching data from `university.json`
+        const fetchColleges = async () => {
+            try {
+                const response = await fetch('../json/universityData.json');
+                const data = await response.json();
+                console.log('Fetched data:', data);
+                setAvailableColleges(data);
+            } catch (error) {
+                console.error('Error fetching colleges:', error);
+            }
+        };
+        fetchColleges();
+    }, []);
+
+    const handleAddCollege = () => {
+        const collegeToAdd = availableColleges.find((college) => college.name === selectedCollege);
+        if (collegeToAdd) {
+            addCollege(collegeToAdd);
+            setSelectedCollege('');
+        }
+    };
 
     return (
-        <div className="bg-white p-6 rounded-lg shadow-md">
-            <h2 className="text-xl font-bold mb-2">College Comparator</h2>
-            <table className="min-w-full">
+        <div className="bg-white p-8 rounded-lg shadow-lg max-w-6xl mx-auto">
+            <h2 className="text-2xl font-bold text-gray-800 mb-4 text-center">UniCompare</h2>
+
+            {/* Dropdown to add colleges */}
+            <div className="mb-4 flex items-center">
+                <select
+                    value={selectedCollege}
+                    onChange={(e) => setSelectedCollege(e.target.value)}
+                    className="border px-4 py-2 rounded mr-4 w-full"
+                >
+                    <option value="">Select a College to Add</option>
+                    {availableColleges.map((college) => (
+                        <option key={college.id} value={college.name}>{college.name}</option>
+                    ))}
+                </select>
+                <button
+                    onClick={handleAddCollege}
+                    className="bg-blue-500 text-white px-4 py-2 rounded"
+                >
+                    Add College
+                </button>
+            </div>
+
+            <table className="min-w-full border-collapse">
                 <thead>
-                    <tr>
-                        <th className="border px-4 py-2">Name</th>
-                        <th className="border px-4 py-2">Rank</th>
-                        <th className="border px-4 py-2">Location</th>
-                        <th className="border px-4 py-2">Acceptance Rate</th>
+                    <tr className="bg-gray-200">
+                        <th className="border px-4 py-3 text-left text-gray-600 font-semibold">Name</th>
+                        <th className="border px-4 py-3 text-left text-gray-600 font-semibold">Location</th>
+                        <th className="border px-4 py-3 text-left text-gray-600 font-semibold">QS Ranking</th>
+                        <th className="border px-4 py-3 text-left text-gray-600 font-semibold">Rating</th>
+                        <th className="border px-4 py-3 text-left text-gray-600 font-semibold">Avg Salary</th>
+                        <th className="border px-4 py-3 text-left text-gray-600 font-semibold">Notable Alumni</th>
+                        <th className="border px-4 py-3 text-left text-gray-600 font-semibold">Courses Offered</th>
+                        <th className="border px-4 py-3 text-left text-gray-600 font-semibold">Placement %</th>
+                        <th className="border px-4 py-3 text-center text-gray-600 font-semibold">Action</th>
                     </tr>
                 </thead>
                 <tbody>
-                    {colleges.map((college) => (
-                        <tr key={college.name}>
-                            <td className="border px-4 py-2">{college.name}</td>
-                            <td className="border px-4 py-2">{college.rank}</td>
-                            <td className="border px-4 py-2">{college.location}</td>
-                            <td className="border px-4 py-2">{college.acceptanceRate}</td>
+                    {colleges.map((college, index) => (
+                        <tr key={college.id} className={index % 2 === 0 ? 'bg-gray-50' : ''}>
+                            <td className="border px-4 py-4 text-gray-800">{college.name}</td>
+                            <td className="border px-4 py-4 text-gray-800">{college.location}</td>
+                            <td className="border px-4 py-4 text-gray-800">{college.qsRanking}</td>
+                            <td className="border px-4 py-4 text-gray-800">{college.reviews.rating}</td>
+                            <td className="border px-4 py-4 text-gray-800">{college.placement.avgSalary}</td>
+                            <td className="border px-4 py-4 text-gray-800">{college.notableAlumni.join(', ')}</td>
+                            <td className="border px-4 py-4 text-gray-800">{college.coursesOffered.join(', ')}</td>
+                            <td className="border px-4 py-4 text-gray-800">{college.placement.placementPercentage}</td>
+                            <td className="border px-4 py-4 text-center">
+                                <button
+                                    onClick={() => removeCollege(college.id)}
+                                    className="text-red-600 hover:text-red-800"
+                                >
+                                    Delete
+                                </button>
+                            </td>
                         </tr>
                     ))}
                 </tbody>
@@ -49,7 +109,7 @@ const universityDeadlines = [
 const DeadlineManagement = () => {
     const [selectedUniversity, setSelectedUniversity] = useState(universityDeadlines[0]);
     const [date, setDate] = useState(new Date());
-    const { selectedUniversities, addUniversity } = useUniversity();
+    const { selectedUniversities, addUniversity, removeUniversity } = useUniversity();
 
     const isDeadline = (dateToCheck) => {
         return selectedUniversities.some(ud => 
@@ -109,8 +169,14 @@ const DeadlineManagement = () => {
                 <h2 className="text-xl font-bold mb-2">Selected Universities</h2>
                 <ul>
                     {selectedUniversities.map((university, index) => (
-                        <li key={index} className="text-gray-700 mb-2">
+                        <li key={index} className="text-gray-700 mb-2 flex items-center">
                             {university.name} - Deadline: {university.deadline.toDateString()}
+                            <button
+                                onClick={() => removeUniversity(university.name)}
+                                className="ml-2 text-red-500 hover:text-red-700"
+                            >
+                                −
+                            </button>
                         </li>
                     ))}
                 </ul>

@@ -47,9 +47,13 @@ import Documentation from './components/Documentation';
 import Billing from './components/Billing.js'; // Import ToastContainer component
 import { UniversityProvider } from './context/UniversityProvider';
 import { UserProvider } from './context/UserContext';
+import { ChatProvider } from './context/ChatContext'
+import { CompareProvider } from './context/CompareContext';
 
 function App() {
     return (
+        <CompareProvider>
+        <ChatProvider>
         <UniversityProvider>
             <UserProvider> {/* Wrap with UserProvider */}
                 <Router>
@@ -104,6 +108,9 @@ function App() {
                 </Router>
             </UserProvider>
         </UniversityProvider>
+        </ChatProvider>
+        </CompareProvider>
+
     );
 }
 

@@ -123,3 +123,17 @@
 .sendButton:hover {
     background-color: #9c3de2; /* Slightly darker on hover */
 }
+
+.playPauseButton {
+    margin-left: 10px;
+    background-color: #007BFF; /* Customize as needed */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 5px 10px;
+    cursor: pointer;
+}
+
+.playPauseButton:hover {
+    background-color: #0056b3; /* Darker shade on hover */
+}

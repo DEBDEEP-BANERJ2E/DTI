@@ -1,22 +1,29 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
+import { ChatContext } from '../context/ChatContext';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faRobot, faPlay, faPause } from '@fortawesome/free-solid-svg-icons';
 import styles from '../styles/AIChatbot.module.css';
 
 const AIChatbot = () => {
+    const { messages, addMessage } = useContext(ChatContext);
     const [isOpen, setIsOpen] = useState(false);
-    const [messages, setMessages] = useState([]);
     const [inputValue, setInputValue] = useState('');
-    const [responses, setResponses] = useState([]); // Array to hold bot responses
-    const [isPlaying, setIsPlaying] = useState(false); // State to track if audio is playing
-    const [utterance, setUtterance] = useState(null); // To store the current utterance
+    const [responses, setResponses] = useState([]);
+    const [isPlaying, setIsPlaying] = useState(false);
+    const [utterance, setUtterance] = useState(null);
     const [siriVoice, setSiriVoice] = useState(null);
 
+    // Load voices and set Samantha voice when available
     useEffect(() => {
-        // Check available voices and find one similar to Siri
-        const voices = window.speechSynthesis.getVoices();
-        const samanthaVoice = voices.find((voice) => voice.name === 'Samantha');
-        if (samanthaVoice) setSiriVoice(samanthaVoice);
+        const loadVoices = () => {
+            const voices = window.speechSynthesis.getVoices();
+            const samanthaVoice = voices.find((voice) => voice.name === 'Samantha');
+            if (samanthaVoice) setSiriVoice(samanthaVoice);
+        };
+
+        // Initial load and listener for any changes in available voices
+        loadVoices();
+        window.speechSynthesis.onvoiceschanged = loadVoices;
     }, []);
 
     const toggleChat = () => {
@@ -26,8 +33,7 @@ const AIChatbot = () => {
     const handleSend = async () => {
         if (inputValue.trim() === '') return;
 
-        setMessages((prev) => [...prev, { type: 'user', text: inputValue }]);
-        console.log('User message sent:', inputValue);
+        addMessage({ type: 'user', text: inputValue });
 
         try {
             const response = await fetch('http://localhost:5001/api/chat', {
@@ -38,13 +44,11 @@ const AIChatbot = () => {
 
             const data = await response.json();
             if (response.ok) {
-                console.log('Bot response:', data.response);
-                setMessages((prev) => [...prev, { type: 'bot', text: data.response }]);
-                setResponses((prev) => [...prev, data.response]); // Store the response in the array
-                playAudio(data.response); // Automatically play the response
+                addMessage({ type: 'bot', text: data.response });
+                setResponses((prev) => [...prev, data.response]);
+                playAudio(data.response);
             } else {
-                console.error('Error from server:', data.error);
-                setMessages((prev) => [...prev, { type: 'bot', text: data.error }]);
+                addMessage({ type: 'bot', text: data.error });
             }
         } catch (error) {
             console.error('Error:', error);
@@ -54,22 +58,19 @@ const AIChatbot = () => {
     };
 
     const playAudio = (text) => {
-        if (utterance) window.speechSynthesis.cancel(); // Cancel any previous utterance
+        if (utterance) window.speechSynthesis.cancel();
 
-        // Format text to create natural pauses
         const formattedText = text.replace(/[,;:.]/g, "$& ");
-
         const newUtterance = new SpeechSynthesisUtterance(formattedText);
-        newUtterance.voice = siriVoice || newUtterance.voice; // Set to Samantha if available
-        newUtterance.rate = 0.95;    // Slightly slower for a clear Siri-like tone
-        newUtterance.pitch = 1.0;    // Neutral pitch for calm tone
-        newUtterance.volume = 0.9;   // Soft but audible volume
+        newUtterance.voice = siriVoice || newUtterance.voice; // Use Samantha if available
+        newUtterance.rate = 0.9; // Slow down for a calm tone
+        newUtterance.pitch = 0.95; // Lower pitch for a grounded sound
+        newUtterance.volume = 0.9; // Slightly reduced volume for a softer delivery
+        newUtterance.onend = () => setIsPlaying(false);
 
-        newUtterance.onend = () => setIsPlaying(false); // Reset playing state when done
-
-        setUtterance(newUtterance); // Store the current utterance
-        window.speechSynthesis.speak(newUtterance); // Speak the formatted text
-        setIsPlaying(true); // Set playing state to true
+        setUtterance(newUtterance);
+        window.speechSynthesis.speak(newUtterance);
+        setIsPlaying(true);
     };
 
     const togglePlayPause = () => {
@@ -78,8 +79,8 @@ const AIChatbot = () => {
             setIsPlaying(false);
         } else {
             if (responses.length > 0) {
-                const lastResponse = responses[responses.length - 1]; // Get the last response
-                playAudio(lastResponse); // Play audio for the last response
+                const lastResponse = responses[responses.length - 1];
+                playAudio(lastResponse);
             }
         }
     };

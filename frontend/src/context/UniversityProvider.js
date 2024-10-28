@@ -34,8 +34,12 @@ export const UniversityProvider = ({ children }) => {
         }
     };
 
+    const removeUniversity = (universityName) => {
+        setSelectedUniversities(prev => prev.filter(uni => uni.name !== universityName));
+    };
+
     return (
-        <UniversityContext.Provider value={{ selectedUniversities, addUniversity }}>
+        <UniversityContext.Provider value={{ selectedUniversities, addUniversity, removeUniversity }}>
             {children}
         </UniversityContext.Provider>
     );
