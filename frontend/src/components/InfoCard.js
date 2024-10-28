@@ -4,6 +4,7 @@ import 'react-calendar/dist/Calendar.css'; // Import calendar styling
 import '../styles/InfoCard.module.css'; // Import custom styling
 import { useUniversity } from '../context/UniversityProvider';
 import { useCompare } from '../context/CompareContext';
+//import universityData from '../public/universityData.json';
 
 const CollegeComparator = () => {
     const { colleges, addCollege, removeCollege } = useCompare();
@@ -11,10 +12,13 @@ const CollegeComparator = () => {
     const [selectedCollege, setSelectedCollege] = useState('');
 
     useEffect(() => {
-        // Fetching data from `university.json`
+        // Fetching data from `universityData.json`
         const fetchColleges = async () => {
             try {
-                const response = await fetch('../json/universityData.json');
+                const response = await fetch('/universityData.json'); // Updated path
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
                 const data = await response.json();
                 console.log('Fetched data:', data);
                 setAvailableColleges(data);
