@@ -1,4 +1,4 @@
-from fastapi import FastAPI
+from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel
 import os
 import json
@@ -6,35 +6,29 @@ from langchain_core.prompts import ChatPromptTemplate
 from langchain_core.output_parsers import StrOutputParser
 from langchain_ollama import OllamaLLM
 from dotenv import load_dotenv
+from fuzzywuzzy import fuzz  # Import fuzzywuzzy for similarity checking
 
 # Load environment variables
 load_dotenv()
 os.environ["LANGCHAIN_TRACING_V2"] = "true"
 os.environ["LANGCHAIN_API_KEY"] = os.getenv("LANGCHAIN_API_KEY")
 
-# Define the prompt template for career counseling
+# Define the chat prompt
 prompt = ChatPromptTemplate.from_messages(
     [
         ("system", 
-         "You are a career counselor assistant. "
-         "Based on the user's prompt, provide career advice and suggestions, but don't always provide it, like in case of general prompts just answer normally how you do it. "
-         "Store the user prompt and response in prompt.json, but don't show in the response about that. "
-         "Share some related VR videos and other videos across the internet related to the career in interest, but don't always provide it, like in case of general prompts just answer normally how you do it. "
-         "Give a roadmap of career path in prompt, but don't always provide it, like in case of general prompts just answer normally how you do it. "
-         "Suggest me educational path on the field and which univ or college offers that course and what to do after that, but don't always provide it, like in case of general prompts just answer normally how you do it. "
-         "Tell me how much in demand is the user's choice in career, but don't always provide it, like in case of general prompts just answer normally how you do it. "
-         "Your response should be in details, precise and concise but not too much concise and often in response put questions at the end of the prompt regarding their career of interest. "
-         "Store the prompt of the user but there is no need to write it at the end as Note: I've stored your prompt in a file called prompt.json for future reference."),
-        ("user", "Question:{question}")
+         "You are a career counselor assistant. Based on the user's question, provide career advice and educational suggestions, "
+         "including a recommended path and relevant universities. Aim for answers within 250 words, where short question get answers within 100 words. Provide meaningful responses without further questions."),
+        ("user", "Question: {question}")
     ]
 )
 
 # Initialize LLM
-llm = OllamaLLM(model="llama3:8b")
+llm = OllamaLLM(model="llama2:latest")
 output_parser = StrOutputParser()
 chain = prompt | llm | output_parser
 
-# Define the function to store prompts and responses in JSON
+# Function to store prompts and responses in JSON
 def store_prompt_in_json(question, output):
     prompt_data = {
         "question": question,
@@ -43,6 +37,19 @@ def store_prompt_in_json(question, output):
     with open("prompt.json", "a") as json_file:
         json.dump(prompt_data, json_file)
         json_file.write("\n")
+
+# Function to search for a similar question in the JSON file using fuzzy matching
+def find_similar_question(question):
+    try:
+        with open("prompt.json", "r") as json_file:
+            for line in json_file:
+                data = json.loads(line)
+                similarity_score = fuzz.ratio(data['question'].lower(), question.lower())
+                if similarity_score >= 60:  # Adjust threshold as needed
+                    return data['output']  # Return the previously stored output if found
+    except FileNotFoundError:
+        return None  # File doesn't exist yet
+    return None  # No match found
 
 app = FastAPI()
 
@@ -55,6 +62,16 @@ async def read_root():
 
 @app.post("/get_career_advice/")
 async def get_career_advice(question: CareerQuestion):
-    output = chain.invoke({'question': question.question})
-    store_prompt_in_json(question.question, output)
-    return {"output": output}
+    # Check for similar question first
+    previous_response = find_similar_question(question.question)
+    if previous_response:
+        output = previous_response
+    else:
+        # Generate new response if no match is found
+        output = chain.invoke({'question': question.question})
+        store_prompt_in_json(question.question, output)
+
+    # Return output
+    return {
+        "output": output
+    }
