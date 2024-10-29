@@ -24,15 +24,22 @@ const Logincss = () => {
           {/* OAuth Buttons */}
           <button className="w-full flex items-center justify-center border border-gray-300 rounded-lg py-2 mb-4">
             <FaGoogle className="text-xl mr-2" />
+            <Link to="/signinmock">
             Continue with Google
+            </Link>
           </button>
           <button className="w-full flex items-center justify-center border border-gray-300 rounded-lg py-2 mb-4">
             <FaApple className="text-xl mr-2" />
+            <Link to="/signinmock">
             Continue with Apple
+            </Link>
+            
           </button>
           <button className="w-full flex items-center justify-center border border-gray-300 rounded-lg py-2 mb-4">
             <FaEnvelope className="text-xl mr-2" />
+            <Link to="/signinmock">
             Continue with email
+            </Link>
           </button>
 
           {/* Terms Checkbox */}

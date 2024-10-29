@@ -1,12 +1,62 @@
 /* src/styles/LoginSignUp.module.css */
+
+@keyframes gradientAnimation {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+.backgroundContainer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    background: linear-gradient(120deg, #1368fc, #4eff13);
+    background-size: 200% 200%;
+    animation: gradientAnimation 8s ease infinite;
+}
+
 .loginSignupContainer {
     text-align: center;
-    margin: 50px auto;
-    width: 300px;
-    padding: 20px;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 320px;
+    padding: 30px;
+    border-radius: 10px;
+    background-color: rgba(255, 255, 255, 0.9);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    z-index: 1;
+    position: relative;
+}
+
+h2 {
+    font-size: 24px;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+.userTypeSelection {
+    margin-bottom: 25px;
+}
+
+.userTypeSelection label {
+    font-weight: bold;
+}
+
+.userTypeSelection select {
+    padding: 8px;
+    margin-top: 10px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    width: 100%;
+}
+
+input[type="text"],
+input[type="password"],
+input[type="email"] {
+    width: calc(100% - 20px);
+    padding: 10px;
+    margin: 10px 0;
+    border-radius: 4px;
+    border: 1px solid #ccc;
 }
 
 .toggleContainer {
@@ -14,14 +64,51 @@
 }
 
 .toggleButton {
-    padding: 10px 20px;
-    background-color: #007bff;
+    padding: 12px 24px;
+    background: linear-gradient(135deg, #1368fc, #4eff13); /* Gradient for button */
     color: white;
     border: none;
-    border-radius: 5px;
+    border-radius: 6px;
+    font-weight: bold;
     cursor: pointer;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: background 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
 }
 
 .toggleButton:hover {
-    background-color: #0056b3;
+    background: linear-gradient(135deg, #1368fc, #4eff13); /* Darker gradient on hover */
+    transform: translateY(-2px); /* Lift effect on hover */
+    box-shadow: 0 6px 12px rgba(237, 212, 212, 0.3);
+}
+
+.toggleButton:active {
+    transform: translateY(0); /* Reset lift effect on click */
+    box-shadow: 0 4px 8px rgba(235, 217, 217, 0.2);
+}
+
+/* src/styles/LoginSignUp.module.css */
+
+.loginRegisterButton {
+    padding: 12px 24px;
+    background: linear-gradient(135deg, #1368fc, #00ff80); /* Gradient background for Login/Register button */
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: background 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+    width: 100%; /* Full width to match input fields */
+    margin-top: 20px;
+}
+
+.loginRegisterButton:hover {
+    background: linear-gradient(135deg, #436e90, #243847); /* Slightly darker gradient on hover */
+    transform: translateY(-2px); /* Lift effect on hover */
+    box-shadow: 0 6px 12px rgba(235, 220, 220, 0.3);
+}
+
+.loginRegisterButton:active {
+    transform: translateY(0); /* Reset lift effect on click */
+    box-shadow: 0 4px 8px rgba(228, 216, 216, 0.2);
 }

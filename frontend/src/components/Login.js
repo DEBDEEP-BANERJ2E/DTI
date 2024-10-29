@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-
+import styles from '../styles/LoginSignUp.module.css';
 
 function Login({ userType }) {
     const navigate = useNavigate();
@@ -95,7 +95,7 @@ function Login({ userType }) {
                         {showPassword ? 'Hide' : 'Show'} {/* Eye icon */}
                     </span>
                 </div><br></br>
-                <button type="submit">Login</button>
+                <button className={styles.loginRegisterButton} type="submit">Login</button>
             </form>
             {message && <p>{message}</p>}
         </div>

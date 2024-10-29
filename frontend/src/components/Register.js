@@ -1,5 +1,6 @@
 import React, { useState } from 'react'; // Make sure this is included
 import { useNavigate } from 'react-router-dom'; // Import useNavigate at the top
+import styles from '../styles/LoginSignUp.module.css';
 
 function Register({ userType }) {
     const navigate = useNavigate(); // Add useNavigate hook
@@ -100,7 +101,7 @@ function Register({ userType }) {
                         borderStyle: 'solid', // Define the border style (solid, dotted, etc.)
                         borderColor: 'black' }} // Align left
                 />
-                <button type="submit">Register</button>
+                <button className={styles.loginRegisterButton} type="submit">Register</button>
             </form>
             {message && <p>{message}</p>}
         </div>

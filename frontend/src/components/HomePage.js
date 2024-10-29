@@ -10,7 +10,7 @@ function HomePage() {
                 <h1>Welcome to University Course Registration System</h1>
                 <p>Enhancing the course registration experience for students</p>
                 <Link to="/course-journey-map" className={styles.ctaButton}>Explore the Journey Map</Link>
-                <Link to="/login" className={`${styles.ctaButton} ${styles.getStartedButton}`}>Get Started</Link>
+                <Link to="/logincss" className={`${styles.ctaButton} ${styles.getStartedButton}`}>Get Started</Link>
             </header>
 
             <section className={styles.infoSections}>
