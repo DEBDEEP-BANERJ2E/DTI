@@ -62,7 +62,7 @@ const Sidebar = () => {
                                 </Link>
                             </li>
                             <li className={styles.menuItem}>
-                                <Link to="/login" className={styles.menuLink}>
+                                <Link to="/logincss" className={styles.menuLink}>
                                     <i className={`fas fa-user-plus ${styles.menuIcon}`}></i>
                                     Sign Up Now
                                 </Link>
