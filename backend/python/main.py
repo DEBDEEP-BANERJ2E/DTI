@@ -18,7 +18,7 @@ prompt = ChatPromptTemplate.from_messages(
     [
         ("system", 
          "You are a career counselor assistant. Based on the user's question, provide career advice and educational suggestions, "
-         "including a recommended path and relevant universities. Aim for answers within 250 words."
+         "including a recommended path and relevant universities. **Aim for answers within 200 words.**"
         "Provide meaningful responses without further questions."
         "If the question is something not related to career counseling, crack some nice jokes to lighten the mood and relate it to career somehow."),
         ("user", "Question: {question}")
@@ -26,7 +26,7 @@ prompt = ChatPromptTemplate.from_messages(
 )
 
 # Initialize LLM
-llm = OllamaLLM(model="llama2:latest")
+llm = OllamaLLM(model="llama2:latest", max_tokens=150)
 output_parser = StrOutputParser()
 chain = prompt | llm | output_parser
 
