@@ -1,0 +1,157 @@
+.container {
+  background-color: #f7fafc; /* light gray */
+}
+
+.header {
+  background-color: #1a202c; /* dark gray */
+  color: white;
+  padding: 16px;
+  display: flex;
+  align-items: center;
+}
+
+.logo {
+  height: 48px;
+  width: 48px;
+  margin-right: 16px;
+}
+
+.headerText {
+  flex: 1;
+}
+
+.title {
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.subtitle {
+  font-size: 12px;
+}
+
+.buttonContainer {
+  background-color: #1a202c; /* dark gray */
+  color: white;
+  padding: 16px;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.btn {
+  padding: 8px 16px;
+  border-radius: 4px;
+  margin-left: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.request {
+  background-color: #f6e05e; /* yellow */
+  color: black;
+}
+
+.request:hover {
+  background-color: #ecc94b; /* darker yellow */
+}
+
+.shortlist {
+  background-color: white;
+  color: black;
+  border: 1px solid #e2e8f0; /* light gray */
+}
+
+.shortlist:hover {
+  background-color: #edf2f7; /* light gray */
+}
+
+.statsContainer {
+  background-color: #1a202c; /* dark gray */
+  color: white;
+  padding: 16px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.stat {
+  display: flex;
+  align-items: center;
+}
+
+.icon {
+  font-size: 24px;
+  color: #a0aec0; /* light gray */
+  margin-right: 8px;
+}
+
+.statNumber {
+  font-size: 24px;
+  font-weight: bold;
+  color: #edf2f7; /* very light gray */
+}
+
+.statText {
+  font-size: 12px;
+  color: #a0aec0; /* light gray */
+}
+
+.flexContainer {
+  display: flex;
+}
+
+.sidebar {
+  width: 25%;
+  background-color: white;
+  padding: 16px;
+  border-right: 1px solid #e2e8f0; /* light gray */
+}
+
+.sidebarList {
+  list-style-type: none;
+  padding: 0;
+}
+
+.sidebarItem {
+  cursor: pointer;
+  color: #4a5568; /* dark gray */
+  transition: color 0.3s;
+}
+
+.sidebarItem:hover {
+  color: #3182ce; /* blue */
+}
+
+.active {
+  color: #3182ce; /* blue */
+  font-weight: bold;
+}
+
+.mainContent {
+  width: 75%;
+  padding: 16px;
+  background-color: white;
+}
+
+.contentTitle {
+  font-size: 24px;
+  font-weight: bold;
+  color: #2d3748; /* dark gray */
+}
+
+.contentText {
+  color: #4a5568; /* dark gray */
+}
+
+.readMoreBtn {
+  color: #3182ce; /* blue */
+  cursor: pointer;
+}
+
+.readMoreBtn:hover {
+  text-decoration: underline;
+}
+
+.programList {
+  list-style-type: disc;
+  padding-left: 20px;
+  color: #4a5568; /* dark gray */
+}

@@ -21,8 +21,12 @@ import ScholarshipPortal from './components/ScholarshipPortal';
 import ReviewFeedback from './components/ReviewFeedback';
 import Card from './components/Card';
 import ChartCard from './components/ChartCard';
+import ChartCard1 from './components/ChartCard1';
+import ChartCard2 from './components/ChartCard2';
 import Header from './components/Header';
 import MainContent from './components/MainContent';
+import MainContent1 from './components/MainContent1';
+import MainContent2 from './components/MainContent2';
 import Sidebar from './components/Sidebar';
 import ImageCard from './components/ImageCard';
 import InfoCard from './components/InfoCard';
@@ -47,6 +51,7 @@ import Documentation from './components/Documentation';
 import Logincss from './components/Logincss';
 import SignInMock from './components/SignInMock.js';
 import Billing from './components/Billing.js'; // Import ToastContainer component
+import Universitypro from './components/Universitypro';
 import { UniversityProvider } from './context/UniversityProvider';
 import { UserProvider } from './context/UserContext';
 import { ChatProvider } from './context/ChatContext'
@@ -60,12 +65,14 @@ function App() {
             <UserProvider> {/* Wrap with UserProvider */}
                 <Router>
                     <div>
+                        {/*<Navbar />*/}
                         <Navbar />
                         <div style={{ paddingTop: '80px' }}>
                             <Routes>
                                 <Route path="/" element={<HomePage />} />
                                 <Route path="/login" element={<LoginSignUp />} />
                                 <Route path="/logincss" element={<Logincss/>} />
+                                {/*<Route path="/navbar" element={<Navbar/>} />*/}
                                 <Route path="/signinmock" element={<SignInMock />} />
                                 <Route path="/student-dashboard" element={<StudentDashboard />} />
                                 <Route path="/admin-dashboard" element={<AdminDashboard />} />
@@ -83,9 +90,14 @@ function App() {
                                 <Route path="/reviews" element={<ReviewFeedback />} />
                                 <Route path="/chatbot" element={<AIChatbot />} />
                                 <Route path="/chart-card" element={<ChartCard />} />
+                                <Route path="/chart-card1" element={<ChartCard1 />} />
+                                <Route path="/chart-card2" element={<ChartCard2 />} />
+                                <Route path="/univpro" element={<Universitypro />} />
                                 <Route path="/card" element={<Card />} />
                                 <Route path="/header" element={<Header />} />
                                 <Route path="/main-content" element={<MainContent />} />
+                                <Route path="/main-content1" element={<MainContent1 />} />
+                                <Route path="/main-content2" element={<MainContent2 />} />
                                 <Route path="/sidebar" element={<Sidebar />} />
                                 <Route path="/image-card" element={<ImageCard />} />
                                 <Route path="/info-card" element={<InfoCard />} />

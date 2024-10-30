@@ -1,16 +1,14 @@
-// src/components/UniversityDashboard.js
 import React from 'react';
-import MainContent from './MainContent';
+import MainContent2 from './MainContent2';
 import AIChatbot from './AIChatbot';
 
-function UniversityDashboard() {
+function AdminDashboard() {
     return (
         <div>
-            <h2>University Dashboard</h2>
-            <MainContent />
+            <MainContent2 />
             <AIChatbot />
         </div>
     );
 }
 
-export default UniversityDashboard;
+export default AdminDashboard;

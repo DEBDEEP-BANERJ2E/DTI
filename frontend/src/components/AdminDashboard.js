@@ -1,12 +1,12 @@
 import React from 'react';
-import MainContent from './MainContent';
+import MainContent1 from './MainContent1';
 import AIChatbot from './AIChatbot';
 
 function AdminDashboard() {
     return (
         <div>
             <h2>Admin Dashboard</h2>
-            <MainContent />
+            <MainContent1 />
             <AIChatbot />
         </div>
     );

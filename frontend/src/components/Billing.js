@@ -5,7 +5,7 @@ const Billing = () => {
     return (
         <div className={styles.billingContainer}>
             <main className={styles.mainContent}>
-                <div className={styles.introBadge}>HELLO THERE,</div>
+                {/*<div className={styles.introBadge}>HELLO THERE,</div>*/}
                 <h1 className={styles.mainTitle}>WELCOME TO UNIQUEST</h1>
                 <p className={styles.subtitle}>Your gateway to university admissions!</p>
                 <p className={styles.description}>

@@ -37,7 +37,7 @@ const Navbar = () => {
                 <li><Link to="/admin-dashboard">Admin Dashboard</Link></li>
                 <li><Link to="/search-results">Search Universities</Link></li>
                 <li><Link to="/scholarship-portal">Scholarship Portal</Link></li>
-                <li><Link to="/university-profile">University Profile</Link></li>
+                <li><Link to="/univpro">University Profile</Link></li>
             </ul>
         </nav>
     );

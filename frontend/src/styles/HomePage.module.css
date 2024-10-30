@@ -1,128 +1,128 @@
-/* Reset some default styles */
-body, h1, h2, p, ul, li, ol {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+/* src/styles/HomePage.module.css */
+.homepageContainer {
+    background-color: #000; /* Dark background */
+    color: #f3f3f3; /* Light contrasting text */
+    font-family: 'Inter', sans-serif;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 20px;
 }
 
-/* Basic Styles */
-body {
-    font-family: Arial, sans-serif;
-    line-height: 1.6;
-    color: #333;
-    background-color: #f4f4f4;
-}
-
+/* Hero Section */
 .hero {
-    background: #0056b3;
-    color: #fff;
-    padding: 2rem 0;
+    background-color: #000; /* Pure black for hero section */
     text-align: center;
+    padding: 60px 20px;
 }
 
-.hero h1 {
-    font-size: 2.5rem;
-}
-
-.hero p {
-    font-size: 1.2rem;
-    margin: 1rem 0;
-}
-
-.ctaButton {
-    display: inline-block;
-    background: #fff;
-    color: #0056b3;
-    padding: 0.75rem 1.5rem;
-    text-decoration: none;
-    border-radius: 5px;
+.title {
+    font-size: 3rem;
     font-weight: bold;
-    margin: 1rem;
-    transition: background 0.3s;
+    color: #ffffff; /* White text for main title */
+}
+
+.subtitle {
+    font-size: 1.25rem;
+    margin-top: 1rem;
+    color: #cccccc; /* Slightly lighter gray for subtitle */
+}
+
+.buttonGroup {
+    margin-top: 2rem;
+}
+
+/* Buttons */
+.ctaButton {
+    background: linear-gradient(90deg, #6b4fa6, #2d9cdb); /* Purple to blue gradient */
+    color: #ffffff; /* White text */
+    padding: 12px 24px;
+    border-radius: 30px;
+    font-weight: bold;
+    text-decoration: none;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    margin: 0 8px;
 }
 
 .ctaButton:hover {
-    background: #e6f7ff;
+    transform: scale(1.05);
+    box-shadow: 0px 4px 15px rgba(45, 156, 219, 0.4); /* Subtle glow on hover */
 }
 
-.getStartedButton {
-    background: #ff6600; /* Different color for differentiation */
-}
-
+/* Sections */
 .infoSections {
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-between;
-    gap: 20px; /* Adjust spacing between sections */
-    padding: 2rem 0;
+    justify-content: center;
+    gap: 20px;
+    padding: 40px 0;
+    width: 100%;
+    background-color: #111111; /* Slightly lighter black for contrast */
 }
 
 .infoSection {
-    flex: 1 1 calc(25% - 20px); /* Adjust size of each section */
-    background: #fff;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    padding: 1rem;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    background-color: #1a1a1a; /* Dark gray for section cards */
+    color: #eaeaea; /* Light text */
+    padding: 20px;
+    border-radius: 10px;
+    width: 100%;
+    max-width: 300px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.4);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .infoSection h2 {
-    color: #0056b3;
-    margin-bottom: 0.5rem;
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+    color: #ffffff; /* Bright white for section headers */
 }
 
 .infoSection p {
-    margin-bottom: 1rem;
+    font-size: 1rem;
+    color: #cccccc; /* Light gray text for readability */
 }
 
-#getStarted {
-    background: #e6f7ff;
-    padding: 2rem 0;
+/* Position buttons at the bottom of each card */
+.infoSection .cardButtonContainer {
+    margin-top: auto;
+    padding-top: 15px;
+    display: flex;
+    justify-content: center;
+}
+
+.cardHover:hover {
+    transform: translateY(-5px);
+    box-shadow: 0px 8px 20px rgba(107, 79, 166, 0.4); /* Purple glow on hover */
+}
+
+/* Get Started Section */
+.getStarted {
     text-align: center;
+    padding: 40px 20px;
+    background-color: #000; /* Match background with hero section */
+    color: #ffffff; /* Contrasting white text */
 }
 
-#getStarted h2 {
-    color: #0056b3;
+.getStarted h2 {
+    font-size: 2rem;
+    color: #ffffff;
 }
 
-#getStarted ol {
-    list-style-type: decimal;
-    padding-left: 20px;
-    text-align: left;
-    display: inline-block;
+.getStarted p {
+    color: #cccccc;
 }
 
-footer {
-    background: #333;
-    color: #fff;
-    padding: 1rem 0;
+/* Footer */
+
+.footer {
+    background-color: #000; /* Black footer for cohesive dark theme */
+    color: #777777; /* Medium gray for footer text */
+    padding: 10px 20px; /* Reduced padding for a thinner footer */
     text-align: center;
-}
-
-footer p {
-    margin: 0;
-}
-
-.container {
-    width: 80%;
-    margin: auto;
-}
-
-/* Responsive Design */
-@media (max-width: 768px) {
-    .infoSections {
-        flex-direction: column;
-        align-items: center;
-    }
-
-    .infoSection {
-        flex: 1 1 100%;
-        max-width: 600px;
-        margin-bottom: 20px;
-    }
-
-    .ctaButton {
-        width: 80%;
-        margin: 0.5rem auto;
-    }
+    font-size: 0.875rem;
 }

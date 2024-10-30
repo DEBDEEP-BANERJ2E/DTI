@@ -1,6 +1,7 @@
 // src/Settings.js
 import React, { useRef, useState } from 'react';
 import styles from '../styles/Settings.module.css';
+import { Link } from 'react-router-dom';
 
 const Settings = () => {
     const securityRef = useRef(null);
@@ -11,7 +12,6 @@ const Settings = () => {
     const [profilePicture, setProfilePicture] = useState("https://storage.googleapis.com/a1aa/image/HTBM7JBhwz4KEhtr9HDalnyTmZCoKnVekSbMBfFfPcf2I8qOB.jpg");
     const [personalInfo, setPersonalInfo] = useState(personalInfoFields);
     const [addressInfo, setAddressInfo] = useState(addressFields);
-    const [securityInfo, setSecurityInfo] = useState(securityFields);
     const [newPassword, setNewPassword] = useState("");
     const [confirmPassword, setConfirmPassword] = useState("");
     const [passwordError, setPasswordError] = useState("");
@@ -24,32 +24,17 @@ const Settings = () => {
         }
     };
 
-    const handleEditProfileClick = () => {
-        setIsEditingProfile(true);
-    };
+    const handleEditProfileClick = () => setIsEditingProfile(true);
+    const handleSaveProfileClick = () => setIsEditingProfile(false);
+    const handleEditAddressClick = () => setIsEditingAddress(true);
+    const handleSaveAddressClick = () => setIsEditingAddress(false);
 
-    const handleSaveProfileClick = () => {
-        setIsEditingProfile(false);
-    };
-
-    const handleEditAddressClick = () => {
-        setIsEditingAddress(true);
-    };
-
-    const handleSaveAddressClick = () => {
-        setIsEditingAddress(false);
-    };
-
-    const handleEditSecurityClick = () => {
-        setIsEditingSecurity(true);
-    };
-
+    const handleEditSecurityClick = () => setIsEditingSecurity(true);
     const handleSaveSecurityClick = () => {
         if (newPassword && confirmPassword) {
             if (newPassword === confirmPassword) {
-                // Handle password change logic here
                 console.log("Password changed successfully");
-                setPasswordError(""); // Clear any previous errors
+                setPasswordError("");
                 setNewPassword("");
                 setConfirmPassword("");
             } else {
@@ -65,26 +50,15 @@ const Settings = () => {
         const file = event.target.files[0];
         if (file) {
             const reader = new FileReader();
-            reader.onloadend = () => {
-                setProfilePicture(reader.result);
-            };
+            reader.onloadend = () => setProfilePicture(reader.result);
             reader.readAsDataURL(file);
         }
     };
 
-    const triggerFileInput = () => {
-        if (fileInputRef.current) {
-            fileInputRef.current.click();
-        }
-    };
+    const triggerFileInput = () => fileInputRef.current && fileInputRef.current.click();
 
-    const toggleNotifications = () => {
-        setIsNotificationEnabled((prev) => !prev);
-    };
-
-    const toggleDropdown = () => {
-        setIsDropdownOpen((prev) => !prev);
-    };
+    const toggleNotifications = () => setIsNotificationEnabled(prev => !prev);
+    const toggleDropdown = () => setIsDropdownOpen(prev => !prev);
 
     return (
         <div className={`${styles.container} max-w-4xl mx-auto p-4`}>
@@ -124,17 +98,13 @@ const Settings = () => {
                 </div>
             </div>
             <div className="flex space-x-8 border-b mb-4">
-                <a className={`pb-2 border-b-2 border-blue-500 text-blue-500`} href="#">
-                    My Profile
-                </a>
-                <a className="pb-2 cursor-pointer" onClick={scrollToSection}>
-                    Security
-                </a>
+                <Link to="/profile" className="pb-2 border-b-2 border-blue-500 text-blue-500">My Profile</Link>
+                <Link to="#security" className="pb-2 cursor-pointer" onClick={scrollToSection}>Security</Link>
             </div>
             <div className={`${styles.card} mb-4`}>
                 <div className={`${styles.profileInfo} flex items-center`}>
                     <img
-                        alt="Profile picture"
+                        alt="Profile"
                         className="w-16 h-16 rounded-full mr-4"
                         src={profilePicture}
                     />
@@ -246,18 +216,16 @@ const ProfileSection = React.forwardRef(({ title, fields, isEditing, onEditClick
 const personalInfoFields = [
     { label: 'Name', value: 'Arjun Mehta' },
     { label: 'Email', value: 'arjun@example.com' },
-    { label: 'Phone', value: '+91 123 456 7890' },
+    { label: 'Phone', value: '+91 9876543210' },
+    { label: 'DOB', value: '01-01-1990' },
+    { label: 'Gender', value: 'Male' },
 ];
 
 const addressFields = [
-    { label: 'Street', value: '123 Main St' },
-    { label: 'City', value: 'Bengaluru' },
+    { label: 'Country', value: 'India' },
     { label: 'State', value: 'Karnataka' },
-];
-
-const securityFields = [
-    { label: 'Password', value: '********' },
-    { label: 'Two-Factor Authentication', value: 'Enabled' },
+    { label: 'City', value: 'Bengaluru' },
+    { label: 'Street', value: 'Electronic City' },
 ];
 
 export default Settings;

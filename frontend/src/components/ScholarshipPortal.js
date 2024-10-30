@@ -3,7 +3,7 @@ import React from "react";
 import "../styles/ScholarshipPortal.module.css"; // External CSS or inline styles can remain unchanged
 import AIChatbot from "./AIChatbot";
 
-const ScholarshipCard = ({ featured, daysToGo, logo, title, award, eligibility, lastUpdated }) => {
+const ScholarshipCard = ({ featured, daysToGo, title, award, eligibility, lastUpdated }) => {
     return (
         <div className="bg-white p-4 shadow rounded">
             <div className="flex justify-between items-center mb-2">
@@ -14,7 +14,6 @@ const ScholarshipCard = ({ featured, daysToGo, logo, title, award, eligibility, 
                     <span className="bg-gray-500 text-white px-2 py-1 rounded">{lastUpdated}</span>
                 )}
             </div>
-            <img src={logo} alt={`${title} Logo`} className="mb-2" />
             <h2 className="font-bold mb-2">{title}</h2>
             <p className="mb-2">
                 <strong>Award:</strong> {award}
@@ -32,7 +31,6 @@ const ScholarshipPortal = () => {
         {
             featured: true,
             daysToGo: 5,
-            logo: "https://placehold.co/100x50",
             title: "COLLEGE BOARD 90% FEE WAIVER PROGRAM",
             award: "Up to 100% tuition fee waiver",
             eligibility: "Class 12",
@@ -41,7 +39,6 @@ const ScholarshipPortal = () => {
         {
             featured: true,
             daysToGo: 5,
-            logo: "https://placehold.co/100x50",
             title: "COLLEGE BOARD 50% FEE WAIVER PROGRAM",
             award: "50% SAT Fee Reduction",
             eligibility: "Class 12 students (Annual Income INR 4 L-10L)",
@@ -50,7 +47,6 @@ const ScholarshipPortal = () => {
         {
             featured: false,
             lastUpdated: "4 November 2024",
-            logo: "https://placehold.co/100x50",
             title: "FREE COACHING FOR DNT STUDENTS UNDER SEED SCHEME",
             award: "Coaching fees of up to ₹ 120,000",
             eligibility: "DNT students seeking coaching for entrance exams after Class 12",
@@ -58,7 +54,6 @@ const ScholarshipPortal = () => {
         {
             featured: false,
             daysToGo: 3,
-            logo: "https://placehold.co/100x50",
             title: "INSPIRE SCHOLARSHIP FOR HIGHER EDUCATION (SHE) 2024",
             award: "₹5,000 monthly and ₹20,000 mentorship grant",
             eligibility: "Class 12 passed students",
@@ -67,7 +62,6 @@ const ScholarshipPortal = () => {
         {
             featured: false,
             daysToGo: 3,
-            logo: "https://placehold.co/100x50",
             title: "TATA CAPITAL PANKH SCHOLARSHIP PROGRAM FOR CLASS 11 AND 12 STUDENTS 2024-25",
             award: "Up to INR 10,000",
             eligibility: "Class 11 and 12 students",
@@ -76,7 +70,6 @@ const ScholarshipPortal = () => {
         {
             featured: false,
             daysToGo: 3,
-            logo: "https://placehold.co/100x50",
             title: "TATA CAPITAL PANKH SCHOLARSHIP PROGRAM FOR DIPLOMA/POLYTECHNIC AND GENERAL GRADUATION 2024-25",
             award: "Up to INR 12,000",
             eligibility: "Diploma/Polytechnic or general graduation students",
@@ -89,7 +82,6 @@ const ScholarshipPortal = () => {
             <header className="bg-white shadow">
                 <div className="container mx-auto px-4 py-4 flex justify-between items-center">
                     <div className="flex items-center">
-                        {/*<img src="https://placehold.co/50x50" alt="Buddy4Study Logo" className="mr-2" />*/}
                         <span className="text-3xl font-bold px-1">UniScholar</span>
                     </div>
                     <nav className="flex space-x-4">
