@@ -17,6 +17,7 @@ ChartJS.register(
 const ChartCard1 = () => {
     const sampleStudents = [
         { name: "Alice Johnson", university: "MIT", course: "Computer Science" },
+        { name: "Henry Margaret", university: "MIT", course: "History and Civics" },
         { name: "Bob Smith", university: "Harvard University", course: "Business Administration" },
         { name: "Charlie Brown", university: "Stanford University", course: "Mechanical Engineering" },
         { name: "Daisy Miller", university: "Yale University", course: "Psychology" },
