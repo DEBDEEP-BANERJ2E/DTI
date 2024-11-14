@@ -1,0 +1,12 @@
+{
+  "name": "dti",
+  "version": "1.0.0",
+  "description": "A web-app on University online Admission/Registration system I have added a line in README.md and a test index.html Just added a new branch b02 I have to restart again, wtfffff",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}

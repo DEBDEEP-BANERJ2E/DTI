@@ -11,6 +11,7 @@ function HomePage() {
                 <p className={styles.subtitle}>Enhancing the course registration experience for students</p>
                 <div className={styles.buttonGroup}>
                     <Link to="/login" className={styles.ctaButton}>Explore the Journey Map</Link>
+                    <Link to="/documentation" className={styles.ctaButton}>User Manual</Link>
                     <Link to="/login" className={`${styles.ctaButton} ${styles.getStartedButton}`}>Get Started</Link>
                 </div>
             </header>

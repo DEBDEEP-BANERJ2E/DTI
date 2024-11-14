@@ -1,36 +1,145 @@
-/* styles/Documentation.module.css */
+/* Documentation.module.css */
+
 .documentationContainer {
-    background-color: #1f2937; /* Dark gray background */
-    padding: 20px;
+    /* Scoped CSS variables */
+    --primary-color: #4c7aff; /* Lighter blue for headings */
+    --secondary-color: #3a5bb5; /* Softer secondary blue */
+    --text-color: #f5f5f5; /* Brighter text color */
+    --light-text-color: #d1d1d1; /* Light gray for secondary text */
+    --background-color: #121212; /* Very dark gray for full-page background */
+    --container-background-color: #1f1f1f; /* Dark gray for container background */
+    --border-color: #444444; /* Border color to blend with container */
+    
+    /* Apply full page background color */
+    background-color: var(--background-color);
+    color: var(--text-color);
+    max-width: 800px;
+    margin: 40px auto;
+    padding: 30px 40px;
+    background-color: var(--container-background-color);
     border-radius: 8px;
-    margin-top: 20px;
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.3);
+    line-height: 1.7;
+    font-family: 'Arial', sans-serif;
 }
 
+/* Center the documentation container */
+.pageBackground {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    padding: 20px;
+    background-color: var(--background-color); /* Full page background */
+}
+
+/* Title styling */
 .title {
-    font-size: 2rem; /* Corresponds to text-2xl */
-    font-weight: bold; /* Corresponds to font-bold */
-    color: #ffffff; /* White color */
+    font-size: 28px;
+    font-weight: 600;
+    color: var(--primary-color);
+    margin-bottom: 25px;
+    text-align: center;
+    border-bottom: 2px solid var(--border-color);
+    padding-bottom: 10px;
 }
 
-.description {
-    font-size: 1rem; /* Corresponds to text-lg */
-    color: #d1d5db; /* Light gray color */
-    margin-bottom: 10px;
+/* Section styling */
+.section {
+    margin-bottom: 35px;
+    padding: 20px;
+    background-color: #252525; /* Slightly lighter for section background */
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+    transition: transform 0.2s;
+}
+
+.section:hover {
+    transform: translateY(-3px);
 }
 
 .sectionTitle {
-    font-size: 1.5rem; /* Corresponds to text-xl */
-    font-weight: bold; /* Corresponds to font-bold */
-    color: #ffffff; /* White color */
-    margin-top: 20px;
+    font-size: 24px;
+    font-weight: 500;
+    color: var(--secondary-color);
+    margin-bottom: 15px;
+    border-left: 4px solid var(--primary-color);
+    padding-left: 10px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
 }
 
-.list {
-    list-style-type: none; /* No bullets */
-    padding: 0; /* No padding */
+/* Icon for section title */
+.sectionTitle:before {
+    content: "📘";
+    font-size: 20px;
+    color: var(--secondary-color);
 }
 
-.list li {
-    color: #d1d5db; /* Light gray color */
-    padding: 5px 0; /* Vertical spacing */
+/* Text styling */
+p, li {
+    color: var(--light-text-color);
+    font-size: 16px;
+    line-height: 1.8;
+}
+
+h4 {
+    font-size: 20px;
+    color: var(--text-color);
+    margin-top: 15px;
+}
+
+/* Bullet and numbering styles */
+ul, ol {
+    margin: 10px 0 20px 20px;
+    padding-left: 15px;
+}
+
+ul li {
+    margin-bottom: 8px;
+    list-style-type: disc;
+}
+
+ol li {
+    margin-bottom: 8px;
+    list-style-type: decimal;
+}
+
+/* Code styling */
+code {
+    background-color: #333333; /* Darker background for code */
+    color: #ff79c6; /* Brighter pink for code text */
+    font-size: 0.95em;
+    padding: 3px 5px;
+    border-radius: 4px;
+    margin: 0 2px;
+    font-family: 'Courier New', monospace;
+}
+
+/* Link styling */
+a {
+    color: var(--primary-color);
+    text-decoration: none;
+    font-weight: 500;
+}
+
+a:hover {
+    color: var(--secondary-color);
+    text-decoration: underline;
+}
+
+/* Icons for titles */
+h4:before {
+    content: "🔹";
+    font-size: 18px;
+    margin-right: 8px;
+    color: var(--primary-color);
+}
+
+.title:before {
+    content: "📖";
+    font-size: 30px;
+    color: var(--primary-color);
+    margin-right: 8px;
 }
