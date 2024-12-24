@@ -56,6 +56,7 @@ import { UniversityProvider } from './context/UniversityProvider';
 import { UserProvider } from './context/UserContext';
 import { ChatProvider } from './context/ChatContext'
 import { CompareProvider } from './context/CompareContext';
+import Form from './components/Form.js'
 
 function App() {
     return (
@@ -118,6 +119,7 @@ function App() {
                                 <Route path="/image-card3" element={<ImageCard3 />} />
                                 <Route path="/documentation" element={<Documentation />} />
                                 <Route path="/billing" element={<Billing />} />
+                                <Route path="/form" element={<Form />} />
                             </Routes>
                         </div>
                     </div>

@@ -1,0 +1,42 @@
+{
+    "id": "1",
+    "name": "Fall 2024 Undergraduate Admission",
+    "description": "Please fill out the form below to apply for admission.",
+    "fields": [
+      {
+        "label": "Full Name",
+        "type": "text",
+        "required": true,
+        "placeholder": "Enter your full name"
+      },
+      {
+        "label": "Email",
+        "type": "email",
+        "required": true,
+        "placeholder": "Enter your email"
+      },
+      {
+        "label": "Date of Birth",
+        "type": "date",
+        "required": true
+      },
+      {
+        "label": "Program",
+        "type": "select",
+        "required": true,
+        "options": ["Computer Science", "Engineering", "Mathematics"]
+      },
+      {
+        "label": "Gender",
+        "type": "radio",
+        "required": true,
+        "options": ["Male", "Female", "Other"]
+      },
+      {
+        "label": "Agree to Terms",
+        "type": "checkbox",
+        "required": true
+      }
+    ]
+  }
+  
